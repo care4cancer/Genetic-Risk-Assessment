@@ -1,32 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Care4Cancer - Genetic Risk Assessment</title>
-  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/4529/4529980.png" />
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hereditary Cancer Risk Assessment</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" />
 </head>
-
 <body class="bg-gray-100 text-gray-800">
-  <!-- Navigation Bar -->
-  <nav class="bg-white shadow">
-    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-      <h1 class="text-2xl font-bold text-blue-700">Care4Cancer</h1>
-      <ul class="flex space-x-4">
-        <li><a href="index.html" class="text-gray-700 hover:text-blue-700">Home</a></li>
-        <li><a href="about.html" class="text-gray-700 hover:text-blue-700">About</a></li>
-        <li><a href="calculator.html" class="text-gray-700 hover:text-blue-700">Calculator</a></li>
-        <li><a href="screening.html" class="text-gray-700 hover:text-blue-700">Screening</a></li>
-        <li><a href="risk.html" class="font-semibold text-white bg-blue-600 px-3 py-1 rounded">Genetic Risk</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <!-- Main Content -->
-  <div class="max-w-3xl mx-auto p-6 bg-white shadow rounded mt-10 mb-16">
-    <h2 class="text-2xl font-bold mb-4 text-center">Hereditary Cancer Risk Assessment</h2>
+  <div class="max-w-3xl mx-auto p-6 bg-white shadow rounded mt-10">
+    <h1 class="text-2xl font-bold mb-4 text-center">Hereditary Cancer Risk Assessment</h1>
 
     <!-- Dropdown for Syndrome/Mutation History -->
     <div class="mb-4">
@@ -49,11 +31,6 @@
     <!-- Syndrome Info Display -->
     <div id="syndrome-info" class="bg-blue-50 p-4 rounded border border-blue-200 hidden"></div>
   </div>
-
-  <!-- Footer -->
-  <footer class="bg-white border-t mt-12 py-4 text-center text-sm text-gray-500">
-    &copy; 2025 Care4Cancer. All rights reserved.
-  </footer>
 
   <!-- Script -->
   <script>
@@ -122,5 +99,4 @@
     }
   </script>
 </body>
-
 </html>
