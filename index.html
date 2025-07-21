@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Care4Cancer - Genetic Risk Assessment</title>
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/4529/4529980.png" />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+  <!-- Navigation Bar -->
+  <nav class="bg-white shadow">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-blue-700">Care4Cancer</h1>
+      <ul class="flex space-x-4">
+        <li><a href="index.html" class="text-gray-700 hover:text-blue-700">Home</a></li>
+        <li><a href="about.html" class="text-gray-700 hover:text-blue-700">About</a></li>
+        <li><a href="calculator.html" class="text-gray-700 hover:text-blue-700">Calculator</a></li>
+        <li><a href="screening.html" class="text-gray-700 hover:text-blue-700">Screening</a></li>
+        <li><a href="risk.html" class="font-semibold text-white bg-blue-600 px-3 py-1 rounded">Genetic Risk</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="max-w-3xl mx-auto p-6 bg-white shadow rounded mt-10 mb-16">
+    <h2 class="text-2xl font-bold mb-4 text-center">Hereditary Cancer Risk Assessment</h2>
+
+    <!-- Dropdown for Syndrome/Mutation History -->
+    <div class="mb-4">
+      <label for="syndrome-history" class="block text-gray-700 font-medium mb-2">
+        Known Personal/Family History of Syndromes or Mutations
+      </label>
+      <select id="syndrome-history" name="syndrome-history" class="w-full border border-gray-300 rounded p-2" onchange="toggleSyndromeInfo(this)">
+        <option value="">Select a syndrome or mutation</option>
+        <option value="brca">Hereditary Breast & Ovarian Cancer (BRCA1/2)</option>
+        <option value="lynch">Lynch Syndrome (MLH1, MSH2, MSH6, PMS2, EPCAM)</option>
+        <option value="fap">Familial Adenomatous Polyposis (FAP)</option>
+        <option value="map">MUTYH-Associated Polyposis (MAP)</option>
+        <option value="li-fraumeni">Li-Fraumeni Syndrome (TP53)</option>
+        <option value="peutz-jeghers">Peutz–Jeghers Syndrome (STK11)</option>
+        <option value="cowden">Cowden Syndrome (PTEN)</option>
+        <option value="hdgc">Hereditary Diffuse Gastric Cancer (CDH1)</option>
+      </select>
+    </div>
+
+    <!-- Syndrome Info Display -->
+    <div id="syndrome-info" class="bg-blue-50 p-4 rounded border border-blue-200 hidden"></div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t mt-12 py-4 text-center text-sm text-gray-500">
+    &copy; 2025 Care4Cancer. All rights reserved.
+  </footer>
+
+  <!-- Script -->
+  <script>
+    const syndromeData = {
+      "brca": `
+        <h2 class="text-lg font-semibold mb-2">Hereditary Breast & Ovarian Cancer (BRCA1/2)</h2>
+        <p>Main risks: Breast, ovarian, prostate, pancreatic cancer</p>
+        <p>Test: BRCA1, BRCA2 genetic panel</p>
+        <p>Start screening: Breast MRI + mammogram from 25–30y; consider risk-reducing surgery</p>
+      `,
+      "lynch": `
+        <h2 class="text-lg font-semibold mb-2">Lynch Syndrome (MMR genes)</h2>
+        <p>Main risks: Colon, endometrial, ovarian, gastric, urinary tract cancers</p>
+        <p>Test: MLH1, MSH2, MSH6, PMS2, EPCAM</p>
+        <p>Screening: Colonoscopy every 1–2y from 20–25y; consider surgery for risk reduction</p>
+      `,
+      "fap": `
+        <h2 class="text-lg font-semibold mb-2">Familial Adenomatous Polyposis (FAP)</h2>
+        <p>Main risks: Colorectal, duodenal, thyroid cancer</p>
+        <p>Test: APC gene</p>
+        <p>Screening: Colonoscopy every 1–2y from age 10–15; thyroid ultrasound</p>
+      `,
+      "map": `
+        <h2 class="text-lg font-semibold mb-2">MUTYH-Associated Polyposis (MAP)</h2>
+        <p>Main risk: Colorectal cancer</p>
+        <p>Test: MUTYH gene (biallelic)</p>
+        <p>Screening: Colonoscopy every 1–2y from 25–30y</p>
+      `,
+      "li-fraumeni": `
+        <h2 class="text-lg font-semibold mb-2">Li-Fraumeni Syndrome (TP53)</h2>
+        <p>Main risks: Breast, sarcoma, brain, adrenal cancers</p>
+        <p>Test: TP53 gene</p>
+        <p>Screening: Whole-body MRI, breast MRI from 20y</p>
+      `,
+      "peutz-jeghers": `
+        <h2 class="text-lg font-semibold mb-2">Peutz–Jeghers Syndrome (STK11)</h2>
+        <p>Main risks: GI tract, pancreas, breast, gynecologic cancers</p>
+        <p>Test: STK11 gene</p>
+        <p>Screening: GI endoscopy, breast, pancreatic, gynecologic screening from adolescence</p>
+      `,
+      "cowden": `
+        <h2 class="text-lg font-semibold mb-2">Cowden Syndrome (PTEN)</h2>
+        <p>Main risks: Breast, thyroid, endometrial cancer</p>
+        <p>Test: PTEN gene</p>
+        <p>Screening: Breast, thyroid, endometrial surveillance starting in adolescence/adulthood</p>
+      `,
+      "hdgc": `
+        <h2 class="text-lg font-semibold mb-2">Hereditary Diffuse Gastric Cancer (CDH1)</h2>
+        <p>Main risks: Gastric and lobular breast cancer</p>
+        <p>Test: CDH1 gene</p>
+        <p>Screening: Annual gastroscopy from 20s; consider prophylactic gastrectomy</p>
+      `
+    };
+
+    function toggleSyndromeInfo(select) {
+      const selected = select.value;
+      const infoDiv = document.getElementById("syndrome-info");
+
+      if (selected && syndromeData[selected]) {
+        infoDiv.innerHTML = syndromeData[selected];
+        infoDiv.classList.remove("hidden");
+      } else {
+        infoDiv.innerHTML = "";
+        infoDiv.classList.add("hidden");
+      }
+    }
+  </script>
+</body>
+
+</html>
